@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="search-container">
+    <form action="/api/weather/" method="get">
+        <input type="text" name="city" placeholder="Введите город" required>
+        <button type="submit">Узнать погоду</button>
+    </form>
+</div>
+
+{% if current %}
+    <div class="current-weather">
+        <h2>Погода в {{ current.city }}</h2>
+        <p>Температура: {{ current.temperature_2m }}°C</p>
+        <p>Ветер: {{ current.wind_speed_10m }} м/с</p>
+        <p>Время: {{ current.time }}</p>
+    </div>
+
+    <div class="hourly-forecast">
+        <h3>Почасовой прогноз</h3>
+        <table>
+            <tr>
+                <th>Время</th>
+                <th>Температура</th>
+                <th>Влажность</th>
+                <th>Ветер</th>
+            </tr>
+            {% for item in hourly %}
+            <tr>
+                <td>{{ item.time.strftime("%H:%M") }}</td>
+                <td>{{ item.temperature_2m }}°C</td>
+                <td>{{ item.relative_humidity_2m }}%</td>
+                <td>{{ item.wind_speed_10m }} м/с</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endif %}
+{% endblock %}
