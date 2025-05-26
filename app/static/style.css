@@ -43,3 +43,23 @@ button {
     margin: 20px 0;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+#suggestions {
+    border: 1px solid #ccc;
+    max-height: 150px;
+    overflow-y: auto;
+    margin-top: 5px;
+    background-color: white;
+    z-index: 1000;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
