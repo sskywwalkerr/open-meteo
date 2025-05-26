@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>История запросов</h1>
+
+<ul class="history-list">
+    {% for entry in history %}
+    <li>
+        <span>{{ entry.city }}</span>
+        <small>{{ entry.search_time.strftime("%d.%m.%Y %H:%M") }}</small>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
