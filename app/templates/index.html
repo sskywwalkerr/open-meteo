@@ -3,7 +3,8 @@
 {% block content %}
 <div class="search-container">
     <form action="/api/weather/" method="get">
-        <input type="text" name="city" placeholder="Введите город" required>
+        <input type="text" id="city-input" name="city" placeholder="Введите город" required>
+        <div id="suggestions"></div>
         <button type="submit">Узнать погоду</button>
     </form>
 </div>
