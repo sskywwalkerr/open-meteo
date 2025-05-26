@@ -1,15 +1,15 @@
 version: '3.8'
 
 services:
-  web:
+  app:
     build:
       context: .
-    container_name: web
+    container_name: app
     restart: always
     ports:
       - "8000:8000"
     volumes:
-      - ./app/static:/app/static
+      - app_static:/app/static/static/
     depends_on:
       - db
     env_file:
@@ -28,3 +28,4 @@ services:
 
 volumes:
   postgres_data:
+  app_static:
