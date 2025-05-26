@@ -48,7 +48,6 @@ async def get_weather(
 @router.get("/history", response_class=HTMLResponse)
 async def get_search_history(request: Request, db: AsyncSession = Depends(get_session)):
     try:
-        # Используйте современный синтаксис SQLAlchemy
         query = select(SearchHistory)
         result = await db.execute(query)
         history = result.scalars().all()
@@ -62,3 +61,4 @@ async def get_search_history(request: Request, db: AsyncSession = Depends(get_se
             "error.html",
             {"request": request, "message": f"Ошибка загрузки истории: {str(e)}"}
         )
+
