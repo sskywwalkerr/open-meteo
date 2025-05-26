@@ -1,5 +1,5 @@
 import httpx
-from fastapi import APIRouter, Depends, Request, Query
+from fastapi import APIRouter, Depends, Request, Query, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.services.weather_service import get_weather_data
@@ -61,4 +61,3 @@ async def get_search_history(request: Request, db: AsyncSession = Depends(get_se
             "error.html",
             {"request": request, "message": f"Ошибка загрузки истории: {str(e)}"}
         )
-
