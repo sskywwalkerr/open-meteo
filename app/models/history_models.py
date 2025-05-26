@@ -1,9 +1,12 @@
 from datetime import datetime
-from sqlmodel import SQLModel, Field
+
+from sqlalchemy import Column, Integer, String, DateTime
+from app.database.db import Base
 
 
-class SearchHistory(SQLModel, table=True):
+class SearchHistory(Base):
     __tablename__ = "search_history"
-    id: int = Field(default=None, primary_key=True)
-    city: str = Field(index=True, max_length=100)
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+    id = Column(Integer, primary_key=True)
+    city = Column(String(100), nullable=False)
+    search_time = Column(DateTime, default=datetime.utcnow)
