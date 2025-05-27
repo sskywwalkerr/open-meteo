@@ -12,9 +12,12 @@ services:
       - app_static:/app/static/static/
     depends_on:
       - db
+#      - redis
     env_file:
       - ./.env-docker
     command: [ '/app/docker/app.sh' ]
+    networks:
+      - app-network
 
   db:
     image: postgres:15
@@ -25,7 +28,37 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+#  redis:
+#    image: redis:7
+#    container_name: redis
+#    depends_on:
+#      - db
+#    env_file:
+#      - ./.env
+#    ports:
+#      - 6379:6379
+#    networks:
+#      - app-network
+
+#  celery:
+#    build:
+#      context: .
+#    container_name: celery
+#    command: [ '/app/docker/celery.sh', 'celery' ]
+#    depends_on:
+#      - redis
+#    env_file:
+#      - ./.env
+#    networks:
+#      - app-network
 
 volumes:
   postgres_data:
   app_static:
+
+networks:
+  app-network:
+    driver: bridge
