@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     maxRows: 10,
                     username: GEONAMES_USERNAME,
                     style: "short",
-                    featureClass: "P" // Только населённые пункты
+                    featureClass: "P"
                 }
             });
 
@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     });
 
-    // Скрыть подсказки при клике вне поля ввода
     document.addEventListener("click", (event) => {
         if (!event.target.closest("#city-input")) {
             suggestionsDiv.innerHTML = "";
