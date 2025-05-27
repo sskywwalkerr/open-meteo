@@ -5,7 +5,7 @@ from app.models.history_models import SearchHistory
 import httpx
 
 
-async def get_weather_data(city: str, db: AsyncSession):
+async def get_weather_data(city: str, db: AsyncSession, user):
     try:
         async with httpx.AsyncClient() as client:
             geocode_response = await client.get(
@@ -74,7 +74,7 @@ async def get_weather_data(city: str, db: AsyncSession):
         ]
         db.add_all(hourly)
 
-        history = SearchHistory(city=city)
+        history = SearchHistory(city=city, user_id=user.id)
         db.add(history)
 
         await db.commit()
