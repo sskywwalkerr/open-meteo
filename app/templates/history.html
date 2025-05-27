@@ -4,11 +4,15 @@
 <h1>История запросов</h1>
 
 <ul class="history-list">
-    {% for entry in history %}
-    <li>
-        <span>{{ entry.city }}</span>
-        <small>{{ entry.search_time.strftime("%d.%m.%Y %H:%M") }}</small>
-    </li>
-    {% endfor %}
+    {% if history %}
+        {% for entry in history %}
+        <li>
+            <span>{{ entry.city }}</span>
+            <small>{{ entry.search_time.strftime("%d.%m.%Y %H:%M") }}</small>
+        </li>
+        {% endfor %}
+    {% else %}
+        <p>История запросов пуста.</p>
+    {% endif %}
 </ul>
 {% endblock %}
